@@ -11,8 +11,9 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
+          "tsserver",
           "phpactor",
-          "tsserver"
+          "sqls"
         }
       })
     end
@@ -24,7 +25,8 @@ return {
 
       lspconfig.lua_ls.setup({})
       lspconfig.tsserver.setup({})
-      lspconfig.intelephense.setup({})
+      lspconfig.phpactor.setup({})
+      lspconfig.sqls.setup({})
 
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
