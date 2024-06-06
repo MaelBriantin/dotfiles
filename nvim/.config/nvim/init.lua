@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.opt.relativenumber = true
 -- vim.opt.number = true
+vim.opt.clipboard="unnamed,unnamedplus"
 
 local opts = {}
 
