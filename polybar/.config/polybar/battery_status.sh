@@ -13,14 +13,14 @@ blink_interval=1
 low_battery=20
 
 if [ "$STATUS" == "Charging" ]; then
-    echo "%{F${color_normal}}BAT%{F-} $BATTERY% 󱐥"
+    echo "%{F${color_normal}}BATT%{F-} $BATTERY% 󱐥"
 elif [ "$STATUS" == "Discharging" ]; then
     if [ $BATTERY -le $low_battery ]; then
-        echo "%{F${color_low}}BAT%{F-} $BATTERY%"
+        echo "%{F${color_low}}BATT%{F-} $BATTERY%"
     else
-        echo "%{F${color_normal}}BAT%{F-} $BATTERY%"
+        echo "%{F${color_normal}}BATT%{F-} $BATTERY%"
     fi
 else
-    echo "%{F${color_normal}}BAT%{F-} $BATTERY%"
+    echo "%{F${color_normal}}BATT%{F-} $BATTERY%"
 fi
 
