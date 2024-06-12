@@ -33,18 +33,17 @@ get_speeds() {
 ETH_STATUS=$(cat /sys/class/net/eno1/operstate)
 WIFI_STATUS=$(cat /sys/class/net/wlan0/operstate)
 
-color_eth="#cba6f7"   # Mauve
-color_wifi="#89b4FA"  # Sky
+color_title="#89b4FA"  # Sky
 color_signal="#b4befe"
 
 if [ "$ETH_STATUS" == "up" ]; then
     read downspeed upspeed <<< $(get_speeds eno1)
-    echo "%{F${color_eth}}ETH%{F-} %{F${color_signal}}󰇚%{F-} ${downspeed}KB/s %{F${color_signal}}󰕒%{F-} ${upspeed}KB/s"
+    echo "%{F${color_title}}ETH%{F-} %{F${color_signal}}󰇚%{F-} ${downspeed}KB/s %{F${color_signal}}󰕒%{F-} ${upspeed}KB/s"
 elif [ "$WIFI_STATUS" == "up" ]; then
     read downspeed upspeed <<< $(get_speeds wlan0)
     read ssid signal_strength <<< $(get_wifi_info)
-    echo "%{F${color_wifi}}WIFI%{F-} %{F${color_signal}}$ssid%{F-} ${signal_strength} %{F${color_signal}}󰇚%{F-} ${downspeed}KB/s %{F${color_signal}}󰕒%{F-} ${upspeed}KB/s"
+    echo "%{F${color_title}}WIFI%{F-} %{F${color_signal}}$ssid%{F-} ${signal_strength} %{F${color_signal}}󰇚%{F-} ${downspeed}KB/s %{F${color_signal}}󰕒%{F-} ${upspeed}KB/s"
 else
-    echo "%{F${color_wifi}}WIFI%{F-} disconnected"
+    echo "%{F${color_title}}WIFI%{F-} disconnected"
 fi
 

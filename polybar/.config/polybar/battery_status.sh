@@ -6,7 +6,7 @@ BATTERY_STATUS="/sys/class/power_supply/BAT0/status"
 BATTERY=$(cat $BATTERY_CAPACITY)
 STATUS=$(cat $BATTERY_STATUS)
 
-color_normal="#cba6f7" 
+color_normal="#fab387" 
 color_low="#f38ba8"
 
 blink_interval=1
