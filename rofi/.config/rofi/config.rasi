@@ -1,5 +1,5 @@
 configuration{
-    modi: "run,window,combi";
+    modi: "drun,run,filebrowser,combi";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "kitty";
@@ -7,10 +7,12 @@ configuration{
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-combi: " 🖥️  All ";
-    display-run: " 🏃  Run ";
-    display-window: " 🪟  Window";
+    display-combi: " All ";
+    display-run: " Run ";
+    display-filebrowser: " Files ";
+    display-drun: " Drun ";
     sidebar-mode: true;
+    dpi: 96;
 }
 
 @theme "catppuccin-mocha"
