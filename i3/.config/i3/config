@@ -29,10 +29,19 @@ exec --no-startup-id /usr/bin/feh --bg-scale ~/Pictures/dead-bot.jpg
 exec --no-startup-id /usr/lib/gsd-xsettings
 exec --no-startup-id xrdb -merge ~/.Xresources
 
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec rofi -show combi
+
+exec_always --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 164.96
+
+# Add shortcut for Flameshot
+# bindsym $mod+Shift+Escape exec i3lock -c 000000
+bindsym $mod+Shift+Escape exec ~/.config/i3/i3lock.sh
 
 # Add shortcut for Flameshot
 bindsym $mod+p exec flameshot gui
+
+# Add shortcut for Zellij
+bindsym $mod+z exec zellij
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
