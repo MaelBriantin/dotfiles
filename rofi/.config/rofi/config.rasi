@@ -1,5 +1,5 @@
 configuration{
-    modi: "drun,run,filebrowser,combi";
+    modi: "combi,drun,run,filebrowser";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "kitty";
