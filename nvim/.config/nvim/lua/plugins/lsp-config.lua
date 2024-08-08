@@ -12,8 +12,9 @@ return {
         ensure_installed = {
           "lua_ls",
           "tsserver",
+          "intelephense",
           "phpactor",
-          "sqls"
+          "twiggy_language_server",
         }
       })
     end
@@ -31,10 +32,15 @@ return {
       lspconfig.tsserver.setup({
         capabilities = capabilities
       })
-      lspconfig.phpactor.setup({
-        capabilities = capabilities
+      lspconfig.intelephense.setup({
+        capabilities = capabilities,
+        filetypes = { "php", "twig" }
       })
-      lspconfig.sqls.setup({
+      lspconfig.phpactor.setup({
+        capabilities = capabilities,
+        filetypes = { "php", "twig" }
+      })
+      lspconfig.twiggy_language_server.setup({
         capabilities = capabilities
       })
 
