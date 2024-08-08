@@ -11,7 +11,7 @@ return {
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.diagnostics.phpstan,
-				null_ls.builtins.formatting.pretty_php,
+				null_ls.builtins.formatting.phpcsfixer,
 			},
 		})
 
