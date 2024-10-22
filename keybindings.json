@@ -1,0 +1,36 @@
+[
+    /**
+    * Activity Bar
+    **/
+    {
+        "key": "ctrl+k ctrl+e",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+k ctrl+g",
+        "command": "workbench.view.scm"
+    },
+    {
+        "key": "ctrl+k ctrl+r",
+        "command": "git-graph.view"
+    },
+    {
+        "key": "ctrl+k ctrl+x",
+        "command": "workbench.view.extensions"
+    },
+    {
+        "key": "ctrl+k ctrl+o",
+        "command": "workbench.panel.chat.view.copilot.focus"
+    },
+    {
+        "key": "ctrl+k ctrl+m",
+        "command": "editor.action.toggleMinimap"
+    },
+    /**
+    * Zen Mode
+    **/
+    {
+        "key": "ctrl+k ctrl+z",
+        "command": "workbench.action.toggleZenMode"
+    }
+]
