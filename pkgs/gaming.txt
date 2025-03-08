@@ -1,0 +1,4 @@
+discord
+lutris
+mangohud
+steam

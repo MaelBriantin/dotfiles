@@ -1,0 +1,16 @@
+code
+docker
+docker-compose
+gcc
+github-cli
+jq
+lazygit
+make
+mkcert
+nodejs
+openconnect
+openvpn
+php
+pnpm
+wget
+zsh
