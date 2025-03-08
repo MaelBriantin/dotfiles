@@ -61,8 +61,8 @@ If no options are provided, the script will only install the core packages.
 
 The script uses **Stow** to apply dotfiles:
 
-- The `sources` folder contain directories for each dotfile configuration (e.g., `zsh`, `nvim`).
-- The script will automatically apply the dotfiles from the `sources` directory using Stow.
+- The `dotfiles` folder contain directories for each dotfile configuration (e.g., `zsh`, `nvim`).
+- The script will automatically apply the dotfiles from the `dotfiles` directory using Stow.
 
 ## Docker Configuration
 
@@ -81,4 +81,4 @@ If you run the script with the `--dev` or `--all` options, Docker will be config
     - If Docker installation or configuration fails, check your system for missing dependencies or issues with Docker installation.
 
 - **Stow issues**:
-    - Ensure that your dotfile directories are properly set up in the `sources` folder.
+    - Ensure that your dotfile directories are properly set up in the `dotfiles` folder.

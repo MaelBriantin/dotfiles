@@ -112,17 +112,11 @@ if [ -d "$DOTFILES_DIR" ]; then
     print_message success "Setting up dotfiles using Stow..."
     cd "$DOTFILES_DIR" || { print_message error "Error: Unable to access $DOTFILES_DIR"; exit 1; }
 
-    # Create a backup directory in the script's directory
-    BACKUP_DIR="$(dirname "$0")/backup"
-    mkdir -p "$BACKUP_DIR"
-
-    # Backup existing dotfiles before stowing
-    backup_dotfile "$HOME/.zshrc"
-    backup_dotfile "$HOME/.config/nvim/init.vim"
     
     # Stow each configuration (assuming zsh and nvim directories exist in the sources folder)
-    stow -v zsh
-    stow -v nvim
+    stow zsh -v --adopt
+    stow nvim -v --adopt
+    stow ghostty -v --adopt
 else
     print_message warning "$DOTFILES_DIR not found. Skipping dotfiles setup."
 fi
