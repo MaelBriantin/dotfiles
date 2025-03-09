@@ -13,4 +13,3 @@ openvpn
 php
 pnpm
 wget
-zsh
