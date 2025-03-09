@@ -51,6 +51,7 @@ while [[ "$#" -gt 0 ]]; do
             ;;
         *)
             print_message error "Unknown option: $1"
+            print_message info "Run '--help' to see all available options"
             exit 1
             ;;
     esac

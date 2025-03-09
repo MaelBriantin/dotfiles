@@ -4,9 +4,10 @@
 function show_help {
     echo "Usage: $0 [options]"
     echo "Available options:"
-    echo "  --dev       Install development packages and setup docker"
-    echo "  --full      Install all packages (core, dev and gaming) and setup docker"
-    echo "  -y, --yes   Automatically accept all prompts (yes mode)"
+    echo "  empty       Install only core packages"
+    echo "  --dev, -d   Install development packages and setup docker"
+    echo "  --full, -f  Install all packages (core, dev and media) and setup docker"
+    echo "  --yes, -y   Automatically accept all prompts (yes mode). You can combine this option with '-f' or '-d' like '-fy' or '-dy'."
     echo "  --help      Show this help message"
     exit 0
 }
