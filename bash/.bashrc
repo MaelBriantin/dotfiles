@@ -12,5 +12,3 @@ PS1='[\u@\h \W]\$ '
 exec fish
 
 eval "$(starship init bash)"
-
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
