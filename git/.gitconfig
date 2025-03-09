@@ -1,0 +1,29 @@
+[user]
+	email = mael.briantin@proton.me
+	name = MaelBriantin
+[init]
+	defaultBranch = main
+[core]
+	excludesFiles = ~/.gitignore
+[alias]
+    st = status
+    co = checkout
+    cb = checkout -b
+    sw = switch
+    sc = switch -c
+    ap = add --patch
+    aa = add --all
+    ca = commit --amend
+    cm = commit -m
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    ps = push
+    pl = pull
+    me = merge
+    cl = clone
+    df = diff
+    br = branch
+    ta = tag
+    sh = show
+    rb = rebase
+    rs = reset
+    cp = cherry-pick

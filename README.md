@@ -1,25 +1,25 @@
 # Setup Script for Package Installation and Configuration
 
-This script automates the installation of essential packages, development tools, gaming utilities, and the setup of Docker and dotfiles.
+This script automates the installation of essential packages, development tools, gaming and media utilities, and the setup of Docker and dotfiles.
 
 ## Features
 
 - Installs core packages by default (essential utilities and tools).
-- Optionally installs development (`--dev`) and gaming (`--gaming`) packages.
-- Configures Docker and adds the user to the Docker group when using `--dev` or `--all`.
+- Optionally installs development (`--dev`) packages.
+- Configures Docker and adds the user to the Docker group when using `--dev` or `--full`.
 - Configures the default shell to Zsh if not already set.
 - Applies dotfiles using Stow for a consistent configuration across systems.
 
 ## Prerequisites
 
-A Linux-based system with a compatible package manager (`pacman`, `apt`, or `dnf`).
+An Arch Linux-based system.
 
 ## Usage
 
 ### Clone the repository and navigate to the directory
 
 ```bash
-git clone https://MaelBriantin/dotfiles
+git clone https://github.com/MaelBriantin/dotfiles
 cd dotfiles
 ```
 
@@ -37,16 +37,18 @@ The script can be run with different options to control which packages to instal
 
 ### Options
 
+- no option: Install only the core packages and apply dotfiles.
 - `--dev`: Installs the development packages and sets up Docker.
-- `--gaming`: Installs gaming-related packages.
-- `--all`: Installs all packages (core, development, and gaming) and configures Docker.
+- `--full`: Installs all packages (core, development, and media) and set up Docker.
+- `--yes`: Enables automatic approval for all prompts (e.g., yay installation) during the script execution.
+- `--help`: Displays the help message.
 
 ### Example Usage
 
-For a complete installation (core, development, and gaming), you can run:
+For a complete installation (core, development, and media), you can run:
 
 ```bash
-./setup.sh --all
+./setup.sh --full
 ```
 
 If no options are provided, the script will only install the core packages.
@@ -54,8 +56,8 @@ If no options are provided, the script will only install the core packages.
 ## Packages files
 
 - **`pkgs/core.txt`**: Contains the list of core packages that will always be installed.
-- **`pkgs/dev.txt`**: Contains the list of packages for development (only installed if `--dev` or `--all` is passed).
-- **`pkgs/gaming.txt`**: Contains the list of packages for gaming (only installed if `--gaming` or `--all` is passed).
+- **`pkgs/dev.txt`**: Contains the list of packages for development (only installed if `--dev` or `--full` is passed).
+- **`pkgs/media.txt`**: Contains the list of packages for gaming and media (only installed if `--full` is passed).
 
 ## Dotfile Management
 
@@ -66,16 +68,13 @@ The script uses **Stow** to apply dotfiles:
 
 ## Docker Configuration
 
-If you run the script with the `--dev` or `--all` options, Docker will be configured as follows:
+If you run the script with the `--dev` or `--full` options, Docker will be configured as follows:
 
 - The user will be added to the `docker` group.
 - Docker will be enabled and started using `systemctl`.
 - If Docker installation fails, a warning will be displayed.
 
 ## Troubleshooting
-
-- **Package manager issues**:
-    - The script supports `pacman`, `apt`, and `dnf`. Make sure your system uses one of these.
   
 - **Docker setup**:
     - If Docker installation or configuration fails, check your system for missing dependencies or issues with Docker installation.
