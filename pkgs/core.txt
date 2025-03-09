@@ -19,6 +19,7 @@ neovim
 openssl
 ripgrep
 starship
+stow
 unzip
 xclip
 xdg-utils
