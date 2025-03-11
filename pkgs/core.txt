@@ -6,7 +6,6 @@ curl
 deno
 fastfetch
 fd
-firefox
 fish
 fzf
 ghostty
