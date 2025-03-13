@@ -104,6 +104,10 @@ for dotfile in "${DOTFILES[@]}"; do
 done
 cd "$DIR"
 
+# Enable bluetooth service
+echo $PASSWORD | sudo -S systemctl enable --now bluetooth
+print_message success "Bluetooth setup completed!"
+
 # End of script
 echo ""
 print_message success "Setup complete!" 

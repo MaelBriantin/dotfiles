@@ -1,5 +1,7 @@
 bash
 bat
+bluez
+bluez-utils
 btop
 chromium
 curl
@@ -11,6 +13,7 @@ fzf
 ghostty
 git
 gnome-keyring
+less
 libgnome-keyring
 libsecret
 mesa
