@@ -14,7 +14,7 @@
     sc = switch -c
     ap = add --patch
     aa = add --all
-    ca = commit --amend
+    ca = commit --amend --no-edit
     cm = commit -m
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     ps = push
