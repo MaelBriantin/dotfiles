@@ -1,11 +1,20 @@
+
+# ---- macOS PATH setup ----
+set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
+fish_add_path /opt/homebrew/bin
+
+# ---- Interactive shell config ----
 if status is-interactive
-    # Commands to run in interactive sessions can go here
     set -U fish_greeting
-    starship init fish | source
+
+    if type -q starship
+        starship init fish | source
+    end
 end
 
-# Generated for envman. Do not edit.
+# ---- Envman (do not modify) ----
 test -s ~/.config/envman/load.fish; and source ~/.config/envman/load.fish
 
-# Make Symfony available globally
+# ---- Symfony ----
 set -Ux PATH $HOME/.symfony5/bin $PATH
+
