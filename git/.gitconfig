@@ -28,3 +28,5 @@
     rb = rebase
     rs = reset
     cp = cherry-pick
+[push]
+    autoSetupRemote = true
