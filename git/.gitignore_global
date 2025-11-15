@@ -1,0 +1,7 @@
+.vscode/
+.idea/
+.zed/
+.DS_Store
+CLAUDE.md
+.claude/
+lefthook.yaml

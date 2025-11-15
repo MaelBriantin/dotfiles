@@ -1,11 +1,12 @@
 [user]
 	email = mael.briantin@proton.me
 	name = MaelBriantin
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNojPQxauIQxqRwBWbv+ih62f/MnyJehsqvDVY+lQxV
 [init]
 	defaultBranch = main
 [core]
-	excludesFiles = ~/.gitignore
 	editor = nvim
+	excludesfile = /Users/mael/.gitignore_global
 [alias]
     st = status
     co = checkout
@@ -30,3 +31,9 @@
     cp = cherry-pick
 [push]
     autoSetupRemote = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true

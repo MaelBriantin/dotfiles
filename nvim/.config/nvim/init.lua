@@ -98,6 +98,8 @@ vim.g.have_nerd_font = false
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+vim.opt.winbar = '%=%m %f'
+
 vim.opt.ttyfast = true
 vim.opt.lazyredraw = false
 
@@ -163,6 +165,13 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
+-- Set cutsom nvim cursor style
+vim.o.guicursor = table.concat({
+  'n-v-c:block',                                    -- Normal/Visual/Command = block without blink
+  'i-ci:ver25-blinkwait700-blinkon400-blinkoff250', -- Insert = vertical bar with 25% blink
+  'r-cr:hor20',                                     -- Replace = horizontal cursor
+}, ',')
+
 -- Show which line your cursor is on
 vim.o.cursorline = true
 
@@ -206,6 +215,22 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Tab management keybinds
+vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<cr>', { desc = '[T]ab [N]ew' })
+vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = '[T]ab [C]lose' })
+vim.keymap.set('n', '<leader>to', '<cmd>tabonly<cr>', { desc = '[T]ab [O]nly' })
+vim.keymap.set('n', '<leader>]', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+vim.keymap.set('n', '<leader>[', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
+
+-- Quick tab navigation by number
+for i = 1, 9 do
+  vim.keymap.set('n', '<leader>t' .. i, '<cmd>tabn ' .. i .. '<cr>', { desc = '[T]ab ' .. i })
+end
+
+-- Lazygit and Lazydocker keybinds
+vim.keymap.set('n', '<leader>lg', '<cmd>terminal lazygit<cr>', { desc = 'Open [L]azy[g]it' })
+vim.keymap.set('n', '<leader>ld', '<cmd>terminal lazydocker<cr>', { desc = 'Open [L]azy[d]ocker' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -283,11 +308,11 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        -- add = { text = '+' },
+        -- change = { text = '~' },
+        -- delete = { text = '_' },
+        -- topdelete = { text = '‾' },
+        -- changedelete = { text = '~' },
       },
     },
   },
@@ -306,7 +331,7 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -387,7 +412,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = true },
+      { 'nvim-tree/nvim-web-devicons',            enabled = true },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -503,7 +528,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',    opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -714,6 +739,81 @@ require('lazy').setup({
             },
           },
         },
+
+        -- Svelte Language Server for Svelte 5 with runes support
+        svelte = {
+          on_attach = function(client, bufnr)
+            -- Enable TypeScript support in Svelte files
+            vim.api.nvim_create_autocmd('BufWritePost', {
+              pattern = { '*.js', '*.ts' },
+              callback = function(ctx)
+                client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
+              end,
+            })
+          end,
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = true,
+              },
+            },
+          },
+          settings = {
+            svelte = {
+              plugin = {
+                svelte = {
+                  compilerWarnings = {
+                    -- Disable some warnings for Svelte 5
+                    ['a11y-click-events-have-key-events'] = 'ignore',
+                    ['a11y-no-static-element-interactions'] = 'ignore',
+                  },
+                  -- Enable new transformation for Svelte 5
+                  useNewTransformation = true,
+                },
+                typescript = {
+                  enable = true,
+                  diagnostics = { enable = true },
+                  -- Enable TypeScript completion in Svelte files
+                  hover = { enable = true },
+                  documentSymbols = { enable = true },
+                  completions = { enable = true },
+                  codeActions = { enable = true },
+                  selectionRange = { enable = true },
+                  signatureHelp = { enable = true },
+                  semanticTokens = { enable = true },
+                  -- Point to TypeScript installation
+                  tsdk = vim.fn.stdpath('data') .. '/mason/packages/svelte-language-server/node_modules/svelte-language-server/node_modules/typescript/lib',
+                },
+                css = {
+                  enable = true,
+                  completions = { enable = true },
+                  hover = { enable = true },
+                  diagnostics = { enable = true },
+                },
+                html = {
+                  enable = true,
+                  completions = { enable = true },
+                  hover = { enable = true },
+                },
+              },
+            },
+          },
+        },
+
+        -- TypeScript Language Server (needed for .ts files and Svelte TypeScript support)
+        ts_ls = {
+          -- Don't run ts_ls on .svelte files (let svelte-language-server handle them)
+          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+          init_options = {
+            plugins = {
+              {
+                name = '@sveltejs/typescript-plugin',
+                location = vim.fn.stdpath('data') .. '/mason/packages/svelte-language-server/node_modules/@sveltejs/language-server',
+                languages = { 'svelte' },
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -731,7 +831,8 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'stylua',  -- Used to format Lua code
+        'prettier', -- Used to format Svelte files
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -784,11 +885,31 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'biome' },
+        javascriptreact = { 'biome' },
+        typescript = { 'biome' },
+        typescriptreact = { 'biome' },
+        json = { 'biome' },
+        css = { 'biome' },
+        svelte = { 'prettier' },
+      },
+      formatters = {
+        biome = {
+          condition = function(self, ctx)
+            -- Only use biome if biome.json exists in the git repo
+            local file_dir = vim.fn.fnamemodify(ctx.filename, ':h')
+            local git_root = vim.fn.systemlist('git -C ' ..
+              vim.fn.shellescape(file_dir) .. ' rev-parse --show-toplevel 2>/dev/null')[1]
+            if not git_root or git_root == '' then
+              return false
+            end
+            local biome_config = vim.fn.findfile('biome.json', file_dir .. ';' .. git_root)
+            return biome_config ~= ''
+          end,
+          command = 'biome',
+          args = { 'check', '--write', '--stdin-file-path', '$FILENAME' },
+          stdin = true,
+        },
       },
     },
   },
@@ -892,32 +1013,11 @@ require('lazy').setup({
     },
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'projekt0n/github-nvim-theme',
-    name = 'github-theme',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require('github-theme').setup {
-        options = {
-          transparent = true,
-        },
-      }
-      vim.cmd 'colorscheme github_dark_dimmed'
-      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#2d333b' })
-      vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#2d333b', fg = '#444c56' })
-      vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#2d333b', fg = '#adbac7' })
-      vim.api.nvim_set_hl(0, 'PmenuSel', { bg = '#373e47', fg = '#adbac7' })
-      vim.api.nvim_set_hl(0, 'PmenuBorder', { bg = '#2d333b', fg = '#444c56' })
-    end,
-  },
+  -- NOTE: Colorscheme configuration is now in lua/custom/plugins/themes/
+  -- To change theme, set lazy = false in the desired theme file and lazy = true in others
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { 'folke/todo-comments.nvim',      event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -962,7 +1062,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'svelte', 'typescript', 'tsx', 'javascript' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -1003,6 +1103,7 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   { import = 'custom.plugins' },
+  { import = 'custom.themes' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
