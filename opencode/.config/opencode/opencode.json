@@ -1,0 +1,61 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  
+  "theme": "one-dark",
+  "model": "anthropic/claude-sonnet-4-5",
+  "autoupdate": true,
+  
+  "keybinds": {
+    "leader": "space",
+    
+    "session_new": "<leader>n",
+    "session_list": "<leader>l",
+    "session_export": "<leader>x",
+    "session_compact": "<leader>c",
+    "session_timeline": "<leader>g",
+    "session_share": "<leader>s",
+    
+    "editor_open": "<leader>e",
+    "theme_list": "<leader>t",
+    "model_list": "<leader>m",
+    "sidebar_toggle": "<leader>b",
+    "messages_toggle_conceal": "<leader>h",
+    "agent_list": "<leader>a",
+    
+    "messages_undo": "<leader>u",
+    "messages_redo": "<leader>r",
+    "messages_copy": "<leader>y",
+    
+    "command_list": "super+p,ctrl+p",
+    
+    "input_undo": "super+z",
+    "input_redo": "super+shift+z",
+    "input_paste": "super+v",
+    "input_clear": "super+k",
+    
+    "messages_half_page_up": "ctrl+u",
+    "messages_half_page_down": "ctrl+d",
+    "messages_page_up": "pageup",
+    "messages_page_down": "pagedown",
+    "messages_first": "home,ctrl+g",
+    "messages_last": "end,ctrl+alt+g",
+    
+    "agent_cycle": "tab",
+    "agent_cycle_reverse": "shift+tab",
+    
+    "app_exit": "<leader>q,ctrl+c,ctrl+d"
+  },
+  
+  "tui": {
+    "scroll_acceleration": {
+      "enabled": true
+    }
+  },
+  
+  "share": "manual",
+  
+  "compaction": {
+    "auto": true,
+    "prune": true
+  }
+}
