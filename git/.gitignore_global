@@ -5,3 +5,7 @@
 CLAUDE.md
 .claude/
 lefthook.yaml
+.nvim.lua
+.mise.toml
+codebook.toml
+compose.multi-instance.yaml

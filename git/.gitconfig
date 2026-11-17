@@ -1,7 +1,7 @@
 [user]
 	email = mael.briantin@proton.me
-	name = MaelBriantin
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNojPQxauIQxqRwBWbv+ih62f/MnyJehsqvDVY+lQxV
+	name = Maël Briantin
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINDtGpUupBgVimLhsol9dlp5y00wAbhZiW/j8NR7R5eg
 [init]
 	defaultBranch = main
 [core]
@@ -29,11 +29,13 @@
     rb = rebase
     rs = reset
     cp = cherry-pick
+    # Hunk comme pager, à la demande (git normal sinon)
+    hdiff = -c core.pager=\"hunk pager\" diff
+    hshow = -c core.pager=\"hunk pager\" show
 [push]
     autoSetupRemote = true
-[gpg]
-	format = ssh
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-[commit]
-	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
