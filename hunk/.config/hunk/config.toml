@@ -1,0 +1,6 @@
+# Hunk — https://hunk.dev/docs/reference/config/
+theme = "terminal"            # github-dark-default / github-light-default selon le fond du terminal (= merino Rex)
+agent_notes = true            # notes de l'agent affichées dès l'ouverture
+mode = "auto"                 # côte à côte si assez large (≥ 160 col), sinon haut/bas
+watch = true                  # rechargement auto quand les fichiers changent
+transparent_background = true # fond transparent (glass Rex), comme nvim
