@@ -1,18 +1,22 @@
-background-blur = 0
-background-opacity = 1
+background-blur = 100
+background-opacity = 0.85
 mouse-hide-while-typing = true
 cursor-style = bar
 cursor-style-blink = true
-theme = dark:One Half Dark,light:One Half Light
-window-padding-y = 8
+theme = Atom One Dark
+window-padding-y = 4
 window-padding-x = 8
 macos-titlebar-style = transparent
+macos-icon = xray
 
 # Font-style
 font-size = 16
-font-family = Monaspace Neon NF
-font-feature = "'calt', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'ss10', 'liga'"
+font-family = JetBrains Mono NF
+font-feature = "'calt'"
 
-# Keybinds
+# Keybind
 keybind = global:cmd+backquote=toggle_quick_terminal
 keybind = shift+enter=text:\x1b\r
+
+# Nightly
+# auto-update-channel = tip
