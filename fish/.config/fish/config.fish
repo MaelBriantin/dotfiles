@@ -2,6 +2,10 @@
 # set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
 fish_add_path /opt/homebrew/bin
 
+# ---- Éditeur par défaut (git, hunk, lazygit…) ----
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+
 # ---- Interactive shell config ----
 if status is-interactive
     set -U fish_greeting
